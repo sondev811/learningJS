@@ -193,3 +193,6 @@ if (day === 1) {
 } else {
   console.log('Other')
 }
+
+
+// tạo một vài bài tập về mảng, những cái đã note ở trên
