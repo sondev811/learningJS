@@ -29,7 +29,7 @@ console.log(mang);
 // Có thể sử dụng break và continue: for, for of, for in, filter
 // Không thể forEach, map
 
-const numbers = [1, 2, 3, 4, 5, 6, 7];
+const numbers = [1, 2, 3, 4, 5, 6];
 const sum = numbers.reduce((acc, number) => acc + number, 0);
 console.log("sum: ", sum);
 let nhandoiphantu = numbers.map((number) => {
