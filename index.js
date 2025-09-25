@@ -194,5 +194,15 @@ if (day === 1) {
   console.log('Other')
 }
 
-
 // tạo một vài bài tập về mảng, những cái đã note ở trên
+// git add ., git commit -m "message", git push
+
+// tạo branch, git branch <branch-name>
+// chuyển nhánh, git checkout <branch-name>
+// git pull => lấy code từ remote repository về local repository
+
+// ví dụ: code bị conflict giữa nhánh hiện tại với nhánh master, thì ở trên hiện tại pull code về
+// git pull origin <branch-name>
+
+// git checkout master =>> pull master về(code mới nhất) => chuyển về lại nhánh feature-1
+// => đứng trên nhánh feature-1 xong => git merge master => giải quyết conflict
