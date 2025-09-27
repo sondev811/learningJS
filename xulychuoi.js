@@ -38,6 +38,7 @@ console.log("Trim end:", text.trimEnd());
 // Tìm kiếm và thay thế
 console.log("Index of 'Script':", "  JavaScript Scrip  ".indexOf("Script"));
 console.log("Includes 'Java':", "  JavaScript Programming  ".includes("Java"));
+
 const a = ["apple", "banana", "orange"];
 a.includes("banana");
 console.log("Starts with 'Java':", "JavaScript Programming".startsWith("Java"));
@@ -168,7 +169,9 @@ fruits1.sort((a, b) => b - a); // sắp xếp giảm dần
 
 // reduce: chuyển đổi mảng về 1 kết quả [4, 5, 6] => 16
 const fruits2 = [4, 5, 6];
-const sum = fruits2.reduce((acc, item) => acc + item, ); // acc: tích lũy, item: phần tử
+const sum = fruits2.reduce((tong, item) => {
+  return tong + item;
+}, 0); // acc: tích lũy, item: phần tử
 const users = [
   {
     name: "John",
