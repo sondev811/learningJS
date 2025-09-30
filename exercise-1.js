@@ -11,7 +11,7 @@ const person = { name: "Dat", age: 25, city: "Hanoi" }; // chuyển object thàn
 // Object.keys(person): // lấy ra mảng bảo gồm tất cả key của object => ["name", "age", "city"]
 console.log(Object.keys(person)); // ["name", "age", "city"] // lấy ra mảng chưa các key của object
 const mang = Object.keys(person).filter(key => {
-  const value = person[key];
+  const value = person[key]; 
   // if (!isNaN(value)) { // isNaN: không phải là số, thì phủ định không phải là số => nó là số.
   //   return key;
   // }

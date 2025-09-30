@@ -58,11 +58,55 @@ function replaceWord(str, oldWord, newWord) {
 console.log("\nBài 6 - Thay thế từ:");
 console.log(replaceWord("Hello world, hello everyone", "hello", "hi")); // "hi world, hi everyone"
 
+// ["o", "l", "l", "e", "H"] => olleH
+const reverseStr = (str) => str.split("").reverse().join("");
 // Bài 7: Đảo ngược từng từ trong chuỗi
 function reverseWords(str) {
   // chuyển thành mảng ["Hello", "Word"]
+  const arr = str.split(" "); // ["Hello", "Word"] Hello => olleH
   // duyệt mảng bằng map và đảo ngược từng phần tử trong mảng
+  const newArr = arr.map(item => item.split("").reverse().join("")); // ["olleH", ...]
+  return newArr.join(" "); // "olleH dlroW"
 } 
 
 console.log("\nBài 13 - Đảo ngược từng từ:");
 console.log(reverseWords("Hello World")); // "olleH dlroW"
+
+// [1,2,2,3,3,3,4,4,5] => [1, 2, 3, 4, 5]
+const removeDuplicate = (arr) => {
+  const newArr = []; 
+  arr.forEach(number => {
+    // cách tìm kiếm 1
+    const index = newArr.findIndex(item => {
+      if (item === number) {
+        return item;
+      }
+    });
+
+    // cách tìm kiếm 2
+    if (!newArr.includes(number)) {
+      newArr.push(number);
+    }
+  });
+  return newArr;
+}
+// [1,2,2,3,3,3,4,4,5] => {1: 1, 2: 2, 3: 3, 4: 4, 5: 5 }
+const removeDuplicate1 = (arr) => {
+  const obj = {};
+  for(const number of arr) {
+    obj[number] = number;
+  }
+  return Object.values(obj);
+}
+console.log(removeDuplicate1([1,2,2,3,3,3,4,4,5]))
+// object { key: value }
+const obj = {age: 12};
+obj.name = 1;
+obj.name = 2;
+console.log(obj.age); // 12
+console.log(obj["age"]); // 12
+console.log(obj)
+const stringArr = ["son", "dev"]
+console.log(stringArr.includes("son"));
+console.log(![1,2,3].includes(3));
+console.log(removeDuplicate([1,2,2,3,3,3,4,4,5]))
