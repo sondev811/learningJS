@@ -98,6 +98,8 @@ const removeDuplicate1 = (arr) => {
   }
   return Object.values(obj);
 }
+
+
 console.log(removeDuplicate1([1,2,2,3,3,3,4,4,5]))
 // object { key: value }
 const obj = {age: 12};

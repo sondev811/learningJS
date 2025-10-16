@@ -82,6 +82,36 @@
 // Input: "one two one three two one"
 // Output: { one: 3, two: 2, three: 1 }
 
+const isExistCapitalize = () => {
+  let isExistCapital = null;
+  return isExistCapital;
+};
+
+const isPwdInvalid = (pwd) => {
+  return (
+    pwd?.length < 6 ||
+    !isExistCapitalize(pwd) ||
+    !isExistNumber(pwd) ||
+    !isExistSpecialCharacter(pwd)
+  );
+  // > 6, bao gồm Viết hoa, phải có số, phải có kí tự đặc biệt
+};
+
+const isPwdValid = (pwd) => {
+  return (
+    pwd?.length > 6 &&
+    isExistCapitalize(pwd) &&
+    isExistNumber(pwd) &&
+    isExistSpecialCharacter(pwd)
+  );
+  // > 6, bao gồm Viết hoa, phải có số, phải có kí tự đặc biệt
+};
+// kiểm tra mật khẩu có không đúng hay không => true => mật khẩu không đúng
+isPwdInvalid("123126");
+
+// kiểm tra mật khẩu có đúng hay không => true => mật khẩu đúng
+isPwdValid();
+
 // Kiểm tra chuỗi chỉ chứa số
 // Đề bài: Viết hàm kiểm tra xem chuỗi có phải chỉ gồm các ký tự số hay không.
 // Input: "12345" → Output: true
@@ -104,6 +134,26 @@
 // Đề bài: Cho một mảng có nhiều phần tử giống nhau, hãy lấy ra các phần tử xuất hiện đúng 1 lần.
 // Input: [1, 2, 2, 3, 4, 4, 5]
 // Output: [1, 3, 5]
+
+const findUniqeItem = (arr) => {
+  const obj = {}; // {1:1, 2:1, 3:1, 4:2, 5:1}
+  for (const number of arr) {
+    if (obj[number]) {
+      obj[number]++;
+      continue;
+    } 
+    obj[number] = 1;
+  }
+  const results = [];
+  for (const number in obj) {
+    if (obj[number] === 1) {
+      results.push(number);
+    }
+  }
+  return results.map(Number);
+}
+console.log(findUniqeItem([1,2,2,2,3,4,4,5]));
+// ES6
 
 // Đề bài: Viết hàm trả về vị trí (index) của một phần tử trong mảng. Nếu không có trả về -1.
 // Input: [10, 20, 30, 40], phần tử 30

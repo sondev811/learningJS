@@ -21,10 +21,9 @@ b.map(() => {
 });
 // tìm kiếm vị trí findIndex (tìm kiếm vị trí từ trái qua phải, 
 // nếu thoả điệu kiện thì trả về vị trí luôn, nếu tìm không thấy trả về -1)
-const index = b.findIndex(item => {
-  if (item === 5) return item;
-})
-
+const index = b.findIndex((item) => item === 5);
+const filterArr = b.filter((item) => item > 5);
+console.log(filterArr);
 
 // tìm kiếm phần tử
 const obj = [{ name: "son", age: 1}, {name: "duy", age: 2}, {name: "duy1", age: 2}];
