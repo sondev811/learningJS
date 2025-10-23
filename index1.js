@@ -1,0 +1,149 @@
+const container = document.getElementById("container");
+console.log("container: ", container);
+// tường tác với dom
+const newB = document.createElement("b");
+newB.textContent = "1";
+container.appendChild(newB);
+
+container.innerHTML += "<b>Sơn</b>";
+container.innerHTML += "<p>dev</p>";
+container.innerHTML += "<p>dev 1</p>";
+container.innerHTML += "<p>dev 2</p>";
+
+container.addEventListener("scroll", () => {
+  container.style.backgroundColor = "red";
+});
+
+container.addEventListener("scrollend", () => {
+  container.style.backgroundColor = "white";
+});
+
+container.addEventListener("click", () => {
+  container.style.backgroundColor = "blue";
+});
+
+// container.remove();
+
+const image = document.getElementById("image");
+image.src = "https://www.temp-image.com/ib/xUzeQ22j1MyCaEp_1761225110.png";
+image.style.width = "1000px";
+const title2 = document.getElementById("title2");
+console.log("title2", title2);
+
+const getAllClass = document.getElementsByClassName("container");
+const arr = [...getAllClass];
+for (let i = 0; i < getAllClass.length - 1; i++) {}
+console.log("getAllClass: ", getAllClass);
+// console.log("getAllClass[0];: ", getAllClass[3]);
+// console.log("window: ", window);
+
+// const getQuerySelector1 = document.querySelector(".container")
+// console.log("getQuerySelector: ", getQuerySelector1);
+// const getQuerySelector2 = document.querySelector("#title")
+// console.log("getQuerySelector2: ", getQuerySelector2);
+
+const getAttr = document.querySelector("h2[anyalt='123']");
+console.log("getAttr: ", getAttr);
+if (getAttr) {
+  getAttr.innerHTML = "ABC1";
+  console.log("yes");
+}
+
+const getAll = document.querySelectorAll(".container");
+console.log("getAll: ", getAll);
+
+const h1s = document.getElementsByTagName("button");
+console.log("h1s: ", h1s);
+
+const items = document.querySelectorAll("li");
+console.log(items.length); // 2
+
+const newLi = document.createElement("li");
+newLi.textContent = "Chuối";
+document.getElementById("list").appendChild(newLi);
+
+console.log(items.length); // 2 ✅ T
+
+// callback function:
+
+document.addEventListener("click", () => {
+  // console.log("click")
+});
+
+document.addEventListener("scroll", () => {
+  // console.log("scrolling");
+});
+
+// const btn = document.getElementById("btn");
+// btn.addEventListener("click", () => {
+//   const title2 = document.getElementById("title2");
+//   title2.style.color = "red";
+//   console.log("123");
+// })
+// console.log(btn);
+
+// calculator
+const buttons = document.getElementsByTagName("button");
+const showProcessing = document.getElementById("showProcessing");
+const arr1 = [...buttons];
+
+let calc = "";
+let operation = "";
+let numbers = [];
+[1, 2]
+const calculator = (numbers, operator) => {
+  if (operator === "+") return numbers.reduce((total, item) => (total += item), 0);
+  if (operator === "-") return numbers.reduce((total, item) => (total -= item), 0);
+  if (operator === "*") return numbers.reduce((total, item) => (total *= item), 1);
+  if (operator === "/") {
+    if (numbers[1] === 0) {
+      showProcessing.innerHTML = "Can not devide zero";
+      return;
+    }
+    return numbers[0] / numbers[1];
+  }
+};
+
+const callback = function () {
+  const value = this.getAttribute("alt");
+  calc += value;
+  showProcessing.innerHTML = calc;
+  if (isNaN(value)) { // không phải là số mà là các phép tính
+    switch (value) {
+      case "+":
+        operation = "+";
+        break;
+      case "-":
+        operation = "-";
+        break;
+      case "*":
+        operation = "*";
+        break;
+      case "/":
+        operation = "/";
+        break;
+      case "ac":
+        operation = "";
+        numbers = [];
+        showProcessing.innerHTML = "0"
+        calc = "";
+        break;
+      case "=":
+        const result = calculator(numbers, operation);
+        numbers = [];
+        operation = "";
+        calc = ""
+        showProcessing.innerHTML = result;
+        break;
+      
+    }
+    // các phép tính
+    return;
+  }
+  // các số
+  numbers.push(Number(value));
+};
+
+arr1.forEach((element) => {
+  element.addEventListener("click", callback);
+});

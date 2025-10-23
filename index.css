@@ -1,0 +1,14 @@
+.container {
+
+}
+
+#calculator {
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #000;
+}
+#calculator button {
+  padding: 12px;
+  background: transparent;
+
+}

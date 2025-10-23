@@ -23,11 +23,13 @@ console.log(mang);
 // Bài 1: Tính tổng các phần tử trong numbers.
 // Bài 2: In từng số trong numbers cho đến khi gặp số lớn hơn 3.
 // Bài 3: Đếm số phần tử chẵn trong numbers.
-
 // scope:
 
 // Có thể sử dụng break và continue: for, for of, for in, filter
 // Không thể forEach, map
+
+const es6 = require("./es6.js");
+console.log(es6.son, "result");
 
 const numbers = [1, 2, 3, 4, 5, 6];
 const sum = numbers.reduce((acc, number) => acc + number, 0);
@@ -62,7 +64,7 @@ for(let number of numbers){
   }
   biendem += 1;
 } 
-console.log(a);
+// console.log(a);
 
 
 // Bài 4: Tạo mảng chứa mỗi phần tử của numbers nhân đôi.

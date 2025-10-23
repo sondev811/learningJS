@@ -185,11 +185,11 @@ const sum = (...args) => {
 };
 console.log("Sum:", sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 100, 100, 231));
 
-function abc(args, args1, args2, args4) {
-  console.log(args, args1, args2, args4);
-}
+// function abc(args, args1, args2, args4) {
+//   console.log(args, args1, args2, args4);
+// }
 
-abc(1,2,3,4,5)
+// abc(1,2,3,4,5)
 
 // Spread operator - mở rộng array
 const arr1 = [1, 2, 3]
@@ -201,7 +201,7 @@ console.log("Combined array:", combined);
 // Spread với objects
 const obj1 = { a: 1, c: 2 };
 const obj2 = { c: 3, d: 4 };
-const combinedObj = { ...obj1, ...obj2 };
+const combinedObj = { ...obj1, ...obj2 }; 
 console.log("Combined object:", combinedObj);
 
 //Tới đây
@@ -215,26 +215,48 @@ const y = 20;
 const oldObj = {
   x: x,
   y: y,
-  calculate: function () {
+  calculate: function () { // method
     return this.x + this.y;
   },
 };
+
+const object = {x, y}
+console.log(object);
 
 // ES6 way
 const newObj = {
   x, // shorthand property
   y,
-  calculate() {
+  calculate() { // method regular function
     // method shorthand
-    return this.x + this.y;
+    return this.x + this.y; // this là object hiện tại
   },
+  calculate1: () => { // method arrow function
+    // trong arrow function thì this là window
+    return newObj.x + newObj.y;
+  },
+
   // computed property names
   [`prop_${x}`]: "dynamic property",
 };
 
 console.log("Old object:", oldObj.calculate());
-console.log("New object:", newObj.calculate());
+console.log("New object:", newObj.calculate1());
 console.log("Dynamic property:", newObj.prop_10);
+
+for (const obj of [1,2,3,4,5]) {
+object[`a${obj}`] = obj;
+}
+console.log(object);
+
+// scope: phạm vi hoạt động
+// const foo = () => {
+//   return "foo";
+// }
+
+// export default {
+//   foo,
+// }
 
 // 8. MODULES (Import/Export)
 console.log("\n9. MODULES:");
@@ -251,6 +273,17 @@ console.log("import * as MathUtils from './math.js';");
 // 10. PROMISES
 console.log("\n10. PROMISES:");
 
+
+setTimeout(() => {
+  console.log("timeout"); 
+}, 0);
+console.log("A");
+function a( ) {
+ console.log("B");
+}
+a();
+
+
 // Tạo Promise
 const fetchData = (success = true) => {
   return new Promise((resolve, reject) => {
@@ -265,10 +298,10 @@ const fetchData = (success = true) => {
 };
 
 // Sử dụng Promise
+fetchData(false)
+.then((data) => console.log("Success:", data))
+.catch((error) => console.log("Error:", error));
 console.log("Đang tải dữ liệu...");
-fetchData(true)
-  .then((data) => console.log("Success:", data))
-  .catch((error) => console.log("Error:", error));
 
 // Promise chaining
 const processData = (data) => {
@@ -301,20 +334,34 @@ console.log("Long fruit index:", longFruitIndex);
 console.log("Has apple:", fruits.includes("apple"));
 
 // Array.from() - tạo array từ array-like object
-const realArray = Array.from({ length: 10 }, () => 1 + 2);
+const realArray = Array.from({ length: 10 }, () => 1);
 console.log("Array from object:", realArray);
 
 // 12. MAP VÀ SET
 console.log("\n12. MAP VÀ SET:");
+
+const objTest = {
+  1: "one",
+  true: "true",
+}
+
+console.log(objTest[1]);
+if (objTest[1]) {
+  console.log("1 is true");
+}
+
+for(const key in objTest) {
+  console.log(key);
+}
 
 // Map - key-value pairs với key có thể là bất kỳ type nào
 const myMap = new Map();
 myMap.set("name", "John");
 myMap.set(1, "number key");
 myMap.set(true, "boolean key");
-
+console.log(myMap);
 console.log("Map size:", myMap.size);
-console.log("Get name:", myMap.get("name"));
+console.log("Get name:", myMap.get(1));
 console.log("Has key 1:", myMap.has(1));
 
 // Iterate over Map
@@ -329,6 +376,7 @@ console.log("Set size:", mySet.size);
 
 mySet.add(6);
 console.log("After adding 6:", mySet);
+console.log(mySet.get(6));
 
 // 13. SO SÁNH MAP, SET VÀ OBJECT
 console.log("\n13. SO SÁNH MAP, SET VÀ OBJECT:");
@@ -342,8 +390,14 @@ const objTraditional = {
   1: "number key as string",
 };
 
-console.log("Object keys:", Object.keys(objTraditional)); // ['1', 'name', 'age']
-console.log("Object size:", Object.keys(objTraditional).length);
+console.log("Object keys:", Object.values(objTraditional)); // ['1', 'name', 'age']
+console.log("Object size:", Object.keys(objTraditional).length); // 3
+console.log("Has", objTraditional.hasOwnProperty("name")); // es6
+if (objTraditional.name) {
+  console.log("has");
+} else {
+  console.log("not has");
+}
 
 // MAP - ES6
 const mapES6 = new Map();
@@ -413,7 +467,7 @@ console.time("Map add");
 for (let i = 0; i < 1000; i++) {
   perfMap.set(i, i);
 }
-console.log("Map get:", perfMap.get(1));
+// console.log("Map get:", perfMap.get(1));
 console.timeEnd("Map add");
 
 console.log("\n=== ARRAY vs SET ===");
@@ -429,7 +483,7 @@ console.log("Set (unique only):", setUnique);
 console.log("Set size:", setUnique.size);
 
 console.log("\n--- Checking existence ---");
-const largeArray = Array.from({ length: 10000 }, (_, i) => i);
+const largeArray = Array.from({ length: 1000000 }, (_, i) => i);
 const largeSet = new Set(largeArray);
 
 console.time("Array includes");
@@ -442,8 +496,32 @@ console.timeEnd("Set has");
 
 // Removing duplicates
 const arrayWithDups = [1, 2, 2, 3, 4, 4, 5];
-const uniqueArray = [...new Set(arrayWithDups)];
-console.log("Remove duplicates:", arrayWithDups, "=>", uniqueArray);
+const obj3 = {}
+for(const item of arrayWithDups) {
+  obj3[item] = item;
+}
+console.log(Object.values(obj3));
+// xoá phần tử bị trùng
+const setData = new Set(arrayWithDups); // đưa vào set để loại bỏ các phần tử trùng
+const uniqueArray = [...setData]; // spread operator để rải các phần tử ra mảng
+console.log("Remove duplicates:", uniqueArray);
+
+const obj4 = {
+  a: 1,
+  b: 2,
+  c: 3,
+  abc: function() { // method regular function
+    return "abc";
+  }
+}
+const obj5 = {
+  ...obj4,
+  d: 4
+}
+
+const arrData = [1, 2, 3, 4, 5];
+
+console.log(arrData[2]);
 
 console.log("\n=== WHEN TO USE WHAT? ===");
 console.log(`
@@ -466,8 +544,8 @@ console.log(`
 
 🎯 SET - Use when:
    • Cần các giá trị unique
-   • Cần kiểm tra sự tồn tại
-   • Cần xóa duplicates
+   • Cần kiểm tra sự tồn tại (has)
+   • Cần xóa duplicates (remove)
    • Không cần truy cập theo index
 `);
 
@@ -528,6 +606,8 @@ for (const [key, value] of myMap) {
   console.log(`${key}: ${value}`);
 }
 
+
+
 // 17. ASYNC/AWAIT (ES2017 nhưng liên quan đến Promises)
 console.log("\n17. ASYNC/AWAIT:");
 
@@ -546,20 +626,23 @@ async function fetchUserData() {
 // Gọi async function
 fetchUserData();
 
+
+
 // 18. OBJECT METHODS MỚI
 console.log("\n18. OBJECT METHODS:");
 
 const obj = { a: 1, b: 2, c: 3 };
 
 // Object.keys(), Object.values(), Object.entries()
-console.log("Object keys:", Object.keys(obj));
-console.log("Object values:", Object.values(obj));
+console.log("Object keys:", Object.keys(obj)); // trả về mảng các key của object ["a", "b", "c"]
+console.log("Object values:", Object.values(obj)); // trả về mảng các value của object [1, 2, 3]
 console.log("Object entries:", Object.entries(obj));
 
 // Object.assign() - copy properties
 const source = { d: 4, e: 5 };
 const merged = Object.assign({}, obj, source);
-console.log("Merged object:", merged);
+const merged2 = {...obj, ...source};
+console.log("Merged object:", merged, merged2);
 
 // 19. STRING METHODS MỚI
 console.log("\n19. STRING METHODS:");
@@ -574,9 +657,9 @@ console.log("Repeat 3 times:", "Ha".repeat(3));
 // 20. NUMBER METHODS MỚI
 console.log("\n20. NUMBER METHODS:");
 
-console.log("Is integer:", Number.isInteger(42));
-console.log("Is integer:", Number.isInteger(42.5));
+console.log("Is integer:", Number.isInteger(42)); // Integer là số nguyên 1,2,
+console.log("Is integer:", Number.isInteger(42.5)); // Double, Float là số thập phân
 console.log("Is finite:", Number.isFinite(42));
-console.log("Is finite:", Number.isFinite(Infinity));
-console.log("Is NaN:", Number.isNaN(NaN));
-console.log("Is NaN:", Number.isNaN("hello"));
+console.log("Is finite:", Number.isFinite(Infinity)); // Infinity là số vô cùng
+console.log("Is NaN:", Number.isNaN(NaN)); // NaN là số không xác định
+console.log("Is NaN:", Number.isNaN("hello")); // hello là chuỗi
